@@ -5,7 +5,7 @@ int sum_recurs(int n){
         return 0;
     else    
         return sum(n-1) +1;
-}
+} 
 //Time = O(n)
 int sum_loop(int n){
     int s=0;

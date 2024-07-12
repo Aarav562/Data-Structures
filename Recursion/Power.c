@@ -22,4 +22,4 @@ int pow_loop(int m,int n){
         s= s*s;
     }
     return s;
-}
+} 
