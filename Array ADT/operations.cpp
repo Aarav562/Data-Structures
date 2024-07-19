@@ -22,6 +22,7 @@ class Array{
     void Display();
     void Append(int x);
     void Insert(int index,int x);
+    void Delete(int index);
 };
 void Array::Display(){
     cout<<"Enter The Elements"<<endl;
@@ -34,9 +35,22 @@ void Array::Append(int x){
     length++;
 };
 void Array::Insert(int index,int x){
+    if(index>size){
+        cout<<"The operation is not possible."<<endl;
+        return;
+    }
     for(int i=length;i>index;i--){
         A[i] = A[i-1];
     }
     A[index] = x;
     length++;
 };
+void Array::Delete(int index){
+    if(index>length){
+        cout<<"The operation is not possible"<<endl;
+        return;
+    }
+    for(int i=index;i<length-1;i++){
+        A[i] = A[i+1];
+    }
+}
