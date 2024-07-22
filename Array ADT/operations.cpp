@@ -105,9 +105,8 @@ int Array::binary_search(int x){
     return -1;
 }
 int Array::Get(int index){
-    if(index>0 && index<length){
+    if(index>0 && index<length)
         return A[index];
-    }
 }
 void Array::Set(int index,int x){
     if(index>0 && index<length){
@@ -205,7 +204,7 @@ Array* Array::Merge(Array arr2){
     for(;j<arr2.length;j++){
         C->A[k++] = arr2.A[j++];
     }
-    C->length = length+B.length;
+    C->length = length+arr2.length;
     return C;
 }
 Array* Array::Union(Array B){
@@ -227,14 +226,14 @@ Array* Array::Union(Array B){
     for(;i<length;i++){
         C->A[k++] = A[i];
     }
-    for(;j<arr2.length;j++){
-        C->A[k++] = arr2.A[j++];
+    for(;j<B.length;j++){
+        C->A[k++] = B.A[j++];
     }
     C->length = k;
     return C;
 }
 Array* Array::Intersection(Array B){
-        Array* C;
+    Array* C;
     C = new Array(length + B.length);
     int i=0;
     int j=0;
@@ -273,4 +272,52 @@ Array* Array::Difference(Array B){
     }
     C->length = k;
     return C;
+}
+
+int main(){
+    Array *A;
+    int ch,sz;
+    int x, index;
+
+    cout<<"Enter The Size Of the Array";
+    cin>>sz;
+    A = new Array(sz);
+
+    do{
+        cout<<"\nArray Menu";
+        cout<<"\n1.Insert";
+        cout<<"\n2.Delete";
+        cout<<"\n3.Search";
+        cout<<"\n4.Sum";
+        cout<<"\n5.Display";
+        cout<<"\n6.Exit";
+
+        cout<<"\nEnter Your Choice:\n";
+        cin>>ch;
+
+        switch(ch){
+            case 1:
+                cout<<"Enter an element and index";
+                cin>>x>>index;
+                A->Insert(index,x);
+                break;
+            case 2:
+                cout<<"Enter The index";
+                cin>>index;
+                A->Delete(index);
+                break;
+            case 3:
+                cout<<"Enter The Element You Want To Search For";
+                cin>>x;
+                index = A->binary_search(x);
+                cout<<"The Element is at Index: "<<index;
+                break;
+            case 4:
+                cout<<"Sum is :"<<A->Sum();
+                break;
+            case 5:
+                A->Display();
+        }
+    }while(ch<6);
+    return 0;
 }
