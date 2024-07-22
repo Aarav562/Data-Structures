@@ -32,6 +32,11 @@ class Array{
     int Min();
     int Sum();
     float Avg();
+    void Reverse1();
+    void Reverse2();
+    void InsertSort(int x);
+    int isSorted();
+    void Rearrange();
 };
 void Array::Display(){
     cout<<"Enter The Elements"<<endl;
@@ -133,4 +138,48 @@ int Array::Sum(){
 float Array::Avg(){
     int sum = Sum();
     return sum/length;
+}
+void Array::Reverse1(){
+    int *B;
+    B = new int[size];
+    for(int i=length-1;int j=0;i--,j++){
+        B[j] = A[i];
+    }
+    for(int i = 0;i<length;i++){
+        A[i]=B[i];
+    }
+}
+void Array::Reverse2(){
+    for(int i=length-1;int j=0;i--,j++){
+        int temp = A[i];
+        A[i]=A[j];
+        A[j]=temp;
+    }
+}
+void Array::InsertSort(int x){
+    int i = length-1;
+    while(i>=0 && A[i]>x){
+        A[i+1] = A[i];
+        i--;
+    }
+    A[i+1]=x;
+}
+int Array::isSorted(){
+    for(int i=0;i<length-1;i++){
+        if(A[i]>A[i+1]){
+            return false;
+        }
+    }
+    return true;
+}
+void Array::Rearrange(){
+    int i = 0;
+    int j = length -1;
+    while(i<j){
+        while(A[i]<0){i++;}
+        while(A[i>=0]){j--;}
+        if(i<j){
+            swap(&A[i],&A[j]);
+        }
+    }
 }
