@@ -38,6 +38,9 @@ class Array{
     int isSorted();
     void Rearrange();
     Array* Merge(Array arr2);
+    Array* Union(Array B);
+    Array* Intersection(Array B);
+    Array* Difference(Array B);
 };
 void Array::Display(){
     cout<<"Enter The Elements"<<endl;
@@ -202,5 +205,72 @@ Array* Array::Merge(Array arr2){
     for(;j<arr2.length;j++){
         C->A[k++] = arr2.A[j++];
     }
+    C->length = length+B.length;
+    return C;
+}
+Array* Array::Union(Array B){
+    Array* C;
+    C = new Array(length + B.length);
+    int i=0;
+    int j=0;
+    int k=0;
+    while(i<length && j<B.length){
+        if(A[i]<B.A[j])
+            C->A[k++] = A[i++];
+        else if(B.A[j]<A[i])
+            C->A[k++] = B.A[j++];
+        else{
+            C->A[k++] = A[i++];
+            j++;
+        }
+    }
+    for(;i<length;i++){
+        C->A[k++] = A[i];
+    }
+    for(;j<arr2.length;j++){
+        C->A[k++] = arr2.A[j++];
+    }
+    C->length = k;
+    return C;
+}
+Array* Array::Intersection(Array B){
+        Array* C;
+    C = new Array(length + B.length);
+    int i=0;
+    int j=0;
+    int k=0;
+    while(i<length && j<B.length){
+        if(A[i]<B.A[j])
+            i++;
+        else if(B.A[j]<A[i])
+            j++;
+        else if(A[i]==B.A[j]){
+            C->A[k++] = A[i++];
+            j++;
+        }
+    }
+    C->length = k;
+    return C;
+}
+Array* Array::Difference(Array B){
+    Array* C;
+    C = new Array(length + B.length);
+    int i=0;
+    int j=0;
+    int k=0;
+    while(i<length && j<B.length){
+        if(A[i]<B.A[j])
+            C->A[k++] = A[i++];
+        else if(B.A[j]<A[i])
+            j++;
+        else{
+            i++;
+            j++;
+        }
+    }
+    for(;i<length;i++){
+        C->A[k++] = A[i];
+    }
+    C->length = k;
     return C;
 }
