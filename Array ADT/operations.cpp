@@ -37,6 +37,7 @@ class Array{
     void InsertSort(int x);
     int isSorted();
     void Rearrange();
+    Array* Merge(Array arr2);
 };
 void Array::Display(){
     cout<<"Enter The Elements"<<endl;
@@ -182,4 +183,24 @@ void Array::Rearrange(){
             swap(&A[i],&A[j]);
         }
     }
+}
+Array* Array::Merge(Array arr2){
+    Array *C;
+    C = new Array(length + arr2.length);
+    int i=0;
+    int j=0;
+    int k=0;
+    while(i<length && j<arr2.length){
+        if(A[i]< arr2.A[j])
+            C->A[k++] = A[i++];
+        else
+            C->A[k++] = arr2.A[j++];
+    }
+    for(;i<length;i++){
+        C->A[k++] = A[i];
+    }
+    for(;j<arr2.length;j++){
+        C->A[k++] = arr2.A[j++];
+    }
+    return C;
 }
