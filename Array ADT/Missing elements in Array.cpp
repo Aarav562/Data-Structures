@@ -28,7 +28,7 @@ void missing_multiple(int A[],int n){
     }
 }
 
-//Missing Elements In Unsorted Array
+//Missing Elements In Unsorted Array, Time Taken is O(n)
 void hashing_method(int A[],int n,int l,int h){
     int H[h+1]={};
     for(int i=0;I<n;i++){
