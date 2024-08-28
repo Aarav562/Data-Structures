@@ -12,8 +12,14 @@ class LinkedList{
     LinkedList(){head = NULL;}
     //Create n Number of Nodes
     LinkedList(int A[],int n);
+    //Display By Traversing
     void Display();
+    void Rec_Display(){ Rec_Display(head);}
+    private:
+    // Helper function to recursively display elements
+    void Rec_Display(Node *p);
 };
+
 LinkedList::LinkedList(int A[],int n){
     Node *p,*t;
     head=new Node;
@@ -36,12 +42,18 @@ void LinkedList::Display(){
     }
     cout<<endl;
 }
+void LinkedList::Rec_Display(Node *p){
+    if(p!=NULL){
+        Rec_Display(p->next);
+        cout<<p->data<<" ";
+    }
+}
 int main(){
     int A[] = {1,2,4,6,7,8,3,6,10};
     LinkedList ll(A,sizeof(A)/sizeof(A[0]));
     ll.Display();
+    ll.Rec_Display();
     return 0;
-    
 }
 
 
