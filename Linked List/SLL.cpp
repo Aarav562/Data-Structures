@@ -18,6 +18,8 @@ class LinkedList{
     private:
     // Helper function to recursively display elements
     void Rec_Display(Node *p);
+    void Insert(int pos,int x);
+    void Insert_Sort(int x);
 };
 
 LinkedList::LinkedList(int A[],int n){
@@ -46,6 +48,44 @@ void LinkedList::Rec_Display(Node *p){
     if(p!=NULL){
         Rec_Display(p->next);
         cout<<p->data<<" ";
+    }
+}
+void LinkedList::Insert(int pos, int x)
+{
+    Node *t;
+    Node *p = head;
+    if(pos<0||pos>Length()){
+        return;
+    }
+    t = new Node;
+    t->data = x;
+    t->next = NULL;
+    if(pos==0){
+        t->next = head;
+        head =t;
+    }
+    else if{
+        for(int i=0;i<pos-1;i++){
+            p=p->next;
+        }
+        t->next = p->next;
+        p->next = t;
+    }
+}
+void LinkedList::Insert_Sort(int x){
+    Node *t,*p;
+    *p = head;
+    t->data = x;
+    t->next=NULL;
+    if(head==NULL){
+        head = t;
+    }
+    else{
+        while(p && p->next->data<x){
+            p=p->next;
+        }
+        t=p->next;
+        p->next=t;
     }
 }
 int main(){
