@@ -20,6 +20,7 @@ class LinkedList{
     void Rec_Display(Node *p);
     void Insert(int pos,int x);
     void Insert_Sort(int x);
+    int Deletion(int pos);
 };
 
 LinkedList::LinkedList(int A[],int n){
@@ -87,6 +88,30 @@ void LinkedList::Insert_Sort(int x){
         t=p->next;
         p->next=t;
     }
+}
+int LinkedList::Deletion(int pos){
+    Node *p,*q;
+    auto x = NULL;
+    if(pos==1){
+        p = head;
+        x = p->data;
+        head = p->next;
+        delete p;
+    }
+    else{
+        p = head;
+        q =NULL;
+        for(int i=0;i<pos-1;i++){
+            q=p;
+            p=p->next;
+        }
+        if(p){
+            q->next = p->next;
+            x = p->data;
+            delete p;
+        }
+    }
+    return x;
 }
 int main(){
     int A[] = {1,2,4,6,7,8,3,6,10};
