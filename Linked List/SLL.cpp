@@ -21,6 +21,7 @@ class LinkedList{
     void Insert(int pos,int x);
     void Insert_Sort(int x);
     int Deletion(int pos);
+    int is_sorted();
 };
 
 LinkedList::LinkedList(int A[],int n){
@@ -112,6 +113,16 @@ int LinkedList::Deletion(int pos){
         }
     }
     return x;
+}
+int LinkedList::is_sorted(){
+    Node *p = head;
+    while(p1!=NULL){
+        (if p->next->data<p->data){
+            return 0;
+        }
+        p=p->next;
+    }
+    return 1;
 }
 int main(){
     int A[] = {1,2,4,6,7,8,3,6,10};
