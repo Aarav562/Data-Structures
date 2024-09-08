@@ -25,6 +25,7 @@ class LinkedList{
     void remove_duplicate();
     void Recursive_reverse();
     void Reverse();
+    void Concatenate(LinkedList &l2);
 };
 
 LinkedList::LinkedList(int A[],int n){
@@ -167,6 +168,19 @@ void LinkedList::Reverse(){
         q->next = r;
     }
     head =q;
+}
+void LinkedList::Concatenate(LinkedList &l2){
+    Node *p =head;
+    if(p==NULL){
+        head = l2.head;
+    }
+    else{
+        while(p->next!=NULL){
+            p=p->next;
+        }
+        p->next = l2.head;
+    }
+    l2.head = NULL;
 }
 int main(){
     int A[] = {1,2,4,6,7,8,3,6,10};
