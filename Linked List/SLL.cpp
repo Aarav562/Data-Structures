@@ -22,6 +22,7 @@ class LinkedList{
     void Insert_Sort(int x);
     int Deletion(int pos);
     int is_sorted();
+    void remove_duplicate();
 };
 
 LinkedList::LinkedList(int A[],int n){
@@ -123,6 +124,22 @@ int LinkedList::is_sorted(){
         p=p->next;
     }
     return 1;
+}
+void LinkedList::remove_duplicate(){
+    Node *p,*q;
+    p = head;
+    q = p->next;
+    while(q!=NULL){
+        if(p->data!=q->data){
+            p=q;
+            q=q->next;
+        }
+        else{
+            p->next = q->next;
+            delete q;
+            q = p->next;
+        }
+    }
 }
 int main(){
     int A[] = {1,2,4,6,7,8,3,6,10};
