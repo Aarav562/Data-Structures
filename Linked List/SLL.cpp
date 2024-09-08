@@ -23,6 +23,8 @@ class LinkedList{
     int Deletion(int pos);
     int is_sorted();
     void remove_duplicate();
+    void Recursive_reverse();
+    void Reverse();
 };
 
 LinkedList::LinkedList(int A[],int n){
@@ -140,6 +142,31 @@ void LinkedList::remove_duplicate(){
             q = p->next;
         }
     }
+}
+void LinkedList::Recursive_reverse(){
+    Node *p,*q;
+    p = head;
+    q = NULL;
+    if(p!=NULL){
+        Recursive_reverse(p,p->next);
+        p->next = q;
+    }
+    else{
+        head = q;
+    }
+}
+void LinkedList::Reverse(){
+    Node *p,*q,*r;
+    p = head;
+    q=NULL;
+    r=NULL;
+    while(p!=NULL){
+        r = q;
+        q= p;
+        p = p->next;
+        q->next = r;
+    }
+    head =q;
 }
 int main(){
     int A[] = {1,2,4,6,7,8,3,6,10};
