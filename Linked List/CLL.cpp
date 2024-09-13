@@ -15,7 +15,8 @@ class CircularLL{
     void Display();
     void RecDisp();
     void Insert(int pos,int x);
-    ~CircularLinkedList();
+    void Delete(int pos);
+    ~CircularLL();
 };
 CircularLL::CircularLL(int A[], int n){
     Node *last,*temp;
@@ -90,7 +91,40 @@ void CircularLL::Insert(int pos,int x){
         p->next = t;
     }
 }
-CircularLinkedList::~CircularLinkedList(){
+void CircularLL::Delete(int pos){
+    Node *q =head;
+    int length=0;
+    do{
+        length++;
+        q=q->next;
+    }while(q!=head);
+    Node *p,*t;
+    if(pos==0){
+        p = head;
+        while(p->next!=head){
+            p=p->next;
+        }
+        p->next = head->next;
+        delete head;
+        head = p->next;
+    }
+    else{
+        if(pos<length){
+            cout<<"Invalid Position";
+            return;
+        }
+        else{
+            p = Head;
+            for(int i=0;i<pos-1;i++){
+                p=p->next;
+            }
+            t = p->next;
+            p->next = t->next;
+            delete t;
+        }
+    }
+}
+CircularLL::~CircularLL(){
     Node* p = head;
     while (p->next != head){
         p = p->next;
