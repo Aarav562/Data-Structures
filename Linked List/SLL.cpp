@@ -15,9 +15,6 @@ class LinkedList{
     //Display By Traversing
     void Display();
     void Rec_Display(){ Rec_Display(head);}
-    private:
-    // Helper function to recursively display elements
-    void Rec_Display(Node *p);
     void Insert(int pos,int x);
     void Insert_Sort(int x);
     int Deletion(int pos);
@@ -27,6 +24,10 @@ class LinkedList{
     void Reverse();
     void Concatenate(LinkedList &l2);
     void Merge(LinkedList &l2);
+    int isloop();
+    private:
+    // Helper function to recursively display elements
+    void Rec_Display(Node *p);
 };
 LinkedList::LinkedList(int A[],int n){
     Node *p,*t;
@@ -221,6 +222,17 @@ Node* merge_lists(Node *list1,Node *list2){
 void LinkedList::Merge(LinkedList &l2){
     head = merge_lists(head,l2.head);
     l2.head = NULL;
+}
+int LinkedList::isloop(){
+    Node *p,*q;
+    p=head;
+    q=head;
+    do{
+        p=p->next;
+        q=q->next;
+        q=q!=NULL?q->next:NULL;
+    }while(p&&q);
+    return p==q?1:0;
 }
 int main(){
     int A[] = {1,2,4,6,7,8,3,6,10};
