@@ -71,7 +71,7 @@ void LinkedList::Insert(int pos, int x)
         t->next = head;
         head =t;
     }
-    else if{
+    else{
         for(int i=0;i<pos-1;i++){
             p=p->next;
         }
