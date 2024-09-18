@@ -11,15 +11,11 @@ class DoubleLinkedList{
     Node *head;
     public:
     DoubleLinkedList(){head = NULL;}
-    DoubleLinkedList(int A[],int n)
     void Display();
     void Insert(int pos,int x);
-    void Delete();
+    void Delete(int pos);
     void Reverse();
 };
-DoubleLinkedList::DoubleLinkedList(int A[],int n){
-
-}
 void DoubleLinkedList::Display(){
     Node *p=head;
     while(p!=NULL){
