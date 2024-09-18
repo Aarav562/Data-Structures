@@ -70,7 +70,7 @@ int main(){
     int A[] = {1, 3, 5, 7, 9};
     CircularQ cq(sizeof(A)/sizeof(A[0]) + 1);
     // Enqueue
-    for (int i=0; i<sizeof(A)/sizeof(A[0]); i++){
+    for (auto i=0; i<sizeof(A)/sizeof(A[0]); i++){
         cq.enqueue(A[i]);
     }
     // Display
@@ -79,7 +79,7 @@ int main(){
     // Overflow
     cq.enqueue(10);
     // Dequeue
-    for (int i=0; i<sizeof(A)/sizeof(A[0]); i++){
+    for (auto i=0; i<sizeof(A)/sizeof(A[0]); i++){
         cq.dequeue();
     }
     // Underflow
