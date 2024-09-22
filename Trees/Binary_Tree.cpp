@@ -16,7 +16,7 @@ class Tree{
     void Postorder(Node *p);
     void Inorder(Node *p);
     void Lvlorder(Node *p);
-    void Height(Node *root);
+    int Height(Node *root);
 };
 void Tree::CreateTree(){
     Node *p,*t;
@@ -24,6 +24,9 @@ void Tree::CreateTree(){
     queue<Node*> q;
     cout<<"Enter the Value in root: "<<endl;
     cin>>x;
+    if(x==-1){
+        return;
+    }
     root = new Node;
     root->data=x;
     root->lchild=root->rchild=NULL;
@@ -50,4 +53,63 @@ void Tree::CreateTree(){
             q.push(t);
         }
     }
+}
+void Tree::Preorder(Node *p){
+    if(p){
+        cout<<p->data<<" "<<flush;
+        Preorder(p->lchild);
+        Preorder(p->rchild);
+    }
+}
+void Tree::Inorder(Node *p){
+    if(p){
+        Inorder(p->lchild);
+        cout<<p->data<<" "<<flush;
+        Inorder(p->rchild);
+    }
+}
+void Tree::Postorder(Node *p){
+    if(p){
+        Postorder(p->lchild);
+        Postorder(p->rchild);
+        cout<<p->data<<" "<<flush;
+    }
+}
+void Tree::Lvlorder(Node *p){
+    queue<Node*> q;
+    cout << root->data << ", " << flush;
+    q.emplace(root);
+    while (!q.empty()){
+        p = q.front();
+        q.pop();
+        if (p->lchild){
+            cout << p->lchild->data << ", " << flush;
+            q.emplace(p->lchild);
+        }
+        if (p->rchild){
+            cout << p->rchild->data << ", " << flush;
+            q.emplace(p->rchild);
+        }
+    }
+}
+int Tree::Height(Node *p){
+    int l=0;
+    int r=0;
+    if(p==NULL){
+        return 0;
+    }
+    l = Height(p->lchild);
+    r = Height(p->rchild);
+    if(l>r){
+        return l+1;
+    }
+    else{
+        return r+1;
+    }
+}
+int main(){
+    Tree tq;
+    tq.CreateTree();
+    tq.Postorder(tq.root);
+    return 0;
 }
