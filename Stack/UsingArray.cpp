@@ -85,8 +85,6 @@ int Stack::stackTop() {
     }
     return S[top];
 }
- 
- 
 int main() {
  
     int A[] = {1, 3, 5, 7, 9};
