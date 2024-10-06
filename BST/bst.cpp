@@ -127,3 +127,12 @@ Node* BST::Delete(Node* p,int key){
     }
     return p;
 }
+int BST::Height(Node* p){
+    int x,y;
+    if(p==NULL){
+        return 0;
+    }
+    x = Height(p->left);
+    y = Height(p->right);
+    return x>y?x+1:y+1;
+}
