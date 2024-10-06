@@ -95,3 +95,35 @@ Node* BST::rSearch(Node*p , int key){
         }
     }
 }
+Node* BST::Delete(Node* p,int key){
+    Node* q;
+    if(p==NULL){
+        return NULL;
+    }
+    if(p->left==NULL && p->right==NULL){
+        if(p==root){
+            root = NULL;
+        }
+        delete p;
+        return NULL;
+    }
+    if(key<p->val){
+        p->left = Delete(p->left,key);
+    }
+    else if(key>p->val){
+        p->right = Delete(p->right,key);
+    }
+    else{
+        if(Height(p->left)>Height(p->right)){
+            q = InPre(p->left);
+            p->val = q->val;
+            p->left = Delete(p->left,q->val);
+        }
+        else{
+            q=InSuc(p->right);
+            p->val = q->val;
+            p->right = Delete(p->right,q->val);
+        }
+    }
+    return p;
+}
