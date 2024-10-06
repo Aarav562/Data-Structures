@@ -1,4 +1,5 @@
 #include<iostream>
+#include<stack>
 using namespace std;
 class Node{
     public:
@@ -142,9 +143,41 @@ Node* BST::InPre(Node *p) {
     }
     return p;
 }
-Node* BST::InSucc(Node *p) {
+Node* BST::InSuc(Node *p) {
     while (p && p->left != nullptr){
         p = p->left;
     }
     return p;
+}
+void BST::Create(int p[],int n){
+    stack<Node*>stk;
+    Node* t;
+    int i=0;
+    root = new Node;
+    root->val = p[i++];
+    root->left=root->right=NULL;
+    Node* p = root;
+    while(i<n){
+        if(pre[i]<p->val){
+            t = new Node;
+            t->val = pre[i++];
+            t->left=t->right=NULL;
+            p->left = t;
+            stk.push(p);
+            p=t;
+        }
+        else{
+            if(p[i]>p->val && pre[i]<stk.empty()?32767:stk.top()->data){
+            t = new Node;
+            t->val = pre[i++];
+            t->left=t->right=NULL;
+            p->left = t;
+            p=t;
+            }
+            else{
+                p=stk.top();
+                stk.pop();
+            }
+        }
+    }
 }
