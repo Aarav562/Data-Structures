@@ -136,3 +136,15 @@ int BST::Height(Node* p){
     y = Height(p->right);
     return x>y?x+1:y+1;
 }
+Node* BST::InPre(Node *p) {
+    while (p && p->right != nullptr){
+        p = p->right;
+    }
+    return p;
+}
+Node* BST::InSucc(Node *p) {
+    while (p && p->left != nullptr){
+        p = p->left;
+    }
+    return p;
+}
