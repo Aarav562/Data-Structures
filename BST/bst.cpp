@@ -15,7 +15,7 @@ class BST{
     void iInsert(int key);
     Node* rInsert(Node* p,int key);
     void Inorder(Node* p);
-    Node* iSearch(Node* p,int key);
+    Node* iSearch(int key);
     Node* rSearch(Node* p,int key);
     Node* Delete(Node* p,int key);
     int Height(Node* p);
@@ -68,5 +68,30 @@ void BST::Inorder(Node *p){
         Inorder(p->left);
         cout<<p->val<<" ";
         Inorder(p->right);
+    }
+}
+Node* BST::iSearch(int key){
+    Node* t = root;
+    while(t){
+        if (key==t->val){return t;}
+        else if(key<t->val){t=t->left;}
+        else{t=t->right;}
+    }
+    return NULL;
+}
+Node* BST::rSearch(Node*p , int key){
+    if(p==NULL){
+        return NULL;
+    }
+    else{
+        if(key==p->val){
+            return p;
+        }
+        else if(key<p->val){
+            return rSearch(p->left,key);
+        }
+        else{
+            return rSearch(p->right,key);
+        }
     }
 }
