@@ -14,9 +14,7 @@ class Tree{
     Tree(){root = NULL;}
     void CreateTree();
     void Preorder(Node *p);
-    void Iter_Preorder(Node *p);
     void Postorder(Node *p);
-    void Iter_Postorder(Node *p);
     void Inorder(Node *p);
     void Iter_Inorder(Node *p);
     void Lvlorder(Node *p);
@@ -121,45 +119,8 @@ void Tree::Iter_Inorder(Node *p){
         else{
             p = stk.top();
             stk.pop();
-            cout<<t->data<<" ";
-            p=p->rchild;
-        }
-    }
-}
-void Tree::Iter_Preorder(Node *p){
-    stack<Node> stk;
-    while(p!=NULL||!stk.empty()){
-        if(p!=NULL){
             cout<<p->data<<" ";
-            stk.push(p);
-            p=p->lchild;
-        }
-        else{
-            p=stk.top();
-            stk.pop();
-            p = t->rchild;
-        }
-    }
-}
-void Tree::Iter_Postorder(Node *p){
-    stack<Node*> stk;
-    long int temp;
-    while(p!=NULL||!stk.empty()){
-        if(p!=NULL){
-            stk.push(p);
-            p=p->lchild
-        }
-        else{
-            temp = stk.top();
-            stk.pop();
-            if(temp>0){
-                stk.push(-temp);
-                t = ((Node*)temp)->rchild;
-            }
-            else{
-                cout<<((Node*)temp)->data;
-                t=NULL;
-            }
+            p=p->rchild;
         }
     }
 }
