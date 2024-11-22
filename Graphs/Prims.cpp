@@ -76,3 +76,5 @@ int main() {
     PrimsMST(cost, n);
     return 0;
 }
+
+// For github
