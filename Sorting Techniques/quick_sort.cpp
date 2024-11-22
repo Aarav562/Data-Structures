@@ -56,9 +56,9 @@ int partitionLast(int A[], int low, int high){
 }
 void QuickSortLast(int A[], int low, int high){
     if (low < high){
-        int p = partitionLast(A, low, high); // A[p] in sorted position
-        QuickSortLast(A, low, p-1); // Sort elements in range: A[low], A[p-1]
-        QuickSortLast(A, p+1, high); // Sort elements in range: A[p+1], A[high]
+        int p = partitionLast(A, low, high);
+        QuickSortLast(A, low, p-1);
+        QuickSortLast(A, p+1, high);
     }
 }
  

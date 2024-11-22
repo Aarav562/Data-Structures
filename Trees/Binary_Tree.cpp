@@ -127,6 +127,13 @@ void Tree::Iter_Inorder(Node *p){
 int main(){
     Tree tq;
     tq.CreateTree();
+    cout<<"PostOrder:";
     tq.Postorder(tq.root);
+    cout<<endl;
+    cout<<"Inorder: ";
+    tq.Inorder(tq.root);
+    cout<<endl;
+    cout<<"Preorder:";
+    tq.Preorder(tq.root);
     return 0;
 }

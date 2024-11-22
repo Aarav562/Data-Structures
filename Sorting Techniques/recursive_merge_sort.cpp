@@ -3,7 +3,7 @@
 using namespace std;
  
 template <class T>
-void Print(T& vec, int n, string s){
+void Print(T& vec, int n, string s){ 
     cout << s << ": [" << flush;
     for (int i=0; i<n; i++){
         cout << vec[i] << flush;

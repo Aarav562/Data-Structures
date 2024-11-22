@@ -202,6 +202,8 @@ int main(){
     tree.Inorder(tree.root);
     cout << endl;
     tree.Delete(tree.root, 28);
+    tree.rInsert(tree.root,35);
+    tree.Delete(tree.root,10);
     tree.Inorder(tree.root);
     cout << endl;
     return 0;

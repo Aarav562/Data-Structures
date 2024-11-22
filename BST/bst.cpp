@@ -8,9 +8,8 @@ class Node{
     Node* right;
 };
 class BST{
-    private:
-    Node* root;
     public:
+    Node* root;
     BST(){root = NULL;}
     Node* getRoot(){return root;}
     void iInsert(int key);
@@ -156,28 +155,42 @@ void BST::Create(int p[],int n){
     root = new Node;
     root->val = p[i++];
     root->left=root->right=NULL;
-    Node* p = root;
+    Node* pt = root;
     while(i<n){
-        if(pre[i]<p->val){
+        if(p[i]<pt->val){
             t = new Node;
-            t->val = pre[i++];
+            t->val = p[i++];
             t->left=t->right=NULL;
-            p->left = t;
-            stk.push(p);
-            p=t;
+            pt->left = t;
+            stk.push(pt);
+            pt=t;
         }
         else{
-            if(p[i]>p->val && pre[i]<stk.empty()?32767:stk.top()->data){
+            if(p[i]>pt->val && p[i]<stk.empty()?32767:stk.top()->val){
             t = new Node;
-            t->val = pre[i++];
+            t->val = p[i++];
             t->left=t->right=NULL;
-            p->left = t;
-            p=t;
+            pt->left = t;
+            pt=t;
             }
             else{
-                p=stk.top();
+                pt=stk.top();
                 stk.pop();
             }
         }
     }
+}
+int main(){
+    BST tree;
+    int A[]={50,30,20,40,70,60,80};
+    int n = sizeof(A)/sizeof(A[0]);
+    for(int i=0;i<n;i++){
+        tree.root = tree.rInsert(tree.root,A[i]);
+    }
+    tree.Inorder(tree.root);
+    tree.Delete(tree.root,20);
+    tree.Delete(tree.root,70);
+    cout<<endl;
+    tree.Inorder(tree.root);
+    return 0;
 }
