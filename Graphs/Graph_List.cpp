@@ -11,7 +11,8 @@ class Graph{
     Graph(int V);
 
     void add_edge(int u,int v,int w);
-    void shortest_path(int s);
+    void shortest_path_pq(int s);
+    void shortest_path_s(int s);
 };
 
 Graph::Graph(int V){
@@ -23,7 +24,8 @@ void Graph::add_edge(int u,int v,int w){
     adj[v].push_back(make_pair(u,w));
 }
 
-void Graph::shortest_path(int s){
+//Using Priority Queue
+void Graph::shortest_path_pq(int s){
     priority_queue<pair<int,int>, vector<pair<int,int>> , greater<pair<int,int>>> pq;
     
     vector<int> dist(V,INF);
@@ -47,6 +49,35 @@ void Graph::shortest_path(int s){
         cout<<i<<"\t\t"<<dist[i]<<endl;
     }
 }
+//Using Set
+void Graph::shortest_path_s(int s){
+    set<pair<int,int>> st;
+    vector<int> dist(V,INF);
+    st.insert({0,s});
+    dist[s]=0;
+    while(!st.empty()){
+        auto it = *st.begin();
+        int node = it.second;
+        int dis = it.first;
+        st.erase(it);
+        for(auto it : adj[node]){
+            int adjNode = it.first;
+            int edgeW = it.second;
+            if(dis - edgeW < dist[adjNode]){
+                if(dist[adjNode]!=INF){
+                    st.erase({dist[adjNode],adjNode});
+                }
+                dist[adjNode] = dis + edgeW;
+                st.insert({dist[adjNode],adjNode});
+            }
+        }
+    }
+    cout<<"Vertex Distance From Source"<<endl;
+    for(int i=0;i<V;i++){
+        cout<<i<<"\t\t"<<dist[i]<<endl;
+    }
+}
+
 int main(){
     int V = 9;
     Graph g(V);
@@ -65,6 +96,6 @@ int main(){
     g.add_edge(6, 8, 6);
     g.add_edge(7, 8, 7);
 
-    g.shortest_path(0);
+    g.shortest_path_s(0);
     return 1;
 }
