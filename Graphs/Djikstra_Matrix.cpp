@@ -18,3 +18,22 @@ void printSolution(int dist[])
     for (int i = 0; i < V; i++)
         cout << i << " \t\t\t\t" << dist[i] << endl;
 }
+void Dijkstra(int graph[V][V],int src){
+    int dist[V];
+    bool setSpt[V];
+    for(int i=0;i<v;i++){
+        dist[i] = INT_MAX;
+        setSpt[i] = false;
+    }
+    dist[src] = 0;
+    for(int count =0;count<V-1;count++){
+        int u = minDist(dist,setSpt);
+        setSpt[u] = true;
+        for(int v=0;v<V;v++){
+                if (!sptSet[v] && graph[u][v] && dist[u] != INT_MAX && dist[u] + graph[u][v] < dist[v]){
+                    dist[v] = dist[u] + graph[u][v];
+                }
+        }
+    }
+    printSolution(dist);
+}
