@@ -12,3 +12,9 @@ int minDist(int dist[], bool sprSet[]){
     }
     return min_idx;
 }
+void printSolution(int dist[])
+{
+    cout << "Vertex \t Distance from Source" << endl;
+    for (int i = 0; i < V; i++)
+        cout << i << " \t\t\t\t" << dist[i] << endl;
+}
