@@ -24,3 +24,38 @@ vector<int> belmanford(vector<vector<int>> edges,int V,int src){
     }
     return dist;
 }
+
+int main(){
+    int V, E;
+    cout << "Enter number of vertices and edges: ";
+    cin >> V >> E;
+    
+    vector<vector<int>> edges(E);
+    cout << "Enter the edges (u, v, weight) for each edge:" << endl;
+    for(int i = 0; i < E; i++){
+        int u, v, wt;
+        cin >> u >> v >> wt;
+        edges[i] = {u, v, wt};
+    }
+    
+    int src;
+    cout << "Enter the source vertex: ";
+    cin >> src;
+
+    vector<int> result = belmanford(edges, V, src);
+    
+    if(result[0] == -1){
+        cout << "Graph contains a negative weight cycle!" << endl;
+    } else {
+        cout << "Shortest distances from source vertex " << src << ":" << endl;
+        for(int i = 0; i < V; i++){
+            if(result[i] == 1e8)
+                cout << "INF ";
+            else
+                cout << result[i] << " ";
+        }
+        cout << endl;
+    }
+    
+    return 0;
+}
